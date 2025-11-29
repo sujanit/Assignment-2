@@ -1,0 +1,21 @@
+class InvalidGradeException extends Exception {
+ public InvalidGradeException(String msg) {
+ super(msg);
+ }
+}
+public class Q3_GradeChecker {
+ public static void checkGrade(int marks) throws InvalidGradeException {
+ if (marks < 0 || marks > 100) {
+ throw new InvalidGradeException("Invalid marks: " + marks + ". Marks must be between 0
+and 100.");
+ }
+ System.out.println("Marks accepted: " + marks);
+ }
+ public static void main(String[] args) {
+ try {
+ checkGrade(105); // will throw
+ } catch (InvalidGradeException e) {
+ System.out.println("Caught custom exception: " + e.getMessage());
+ }
+ }
+}

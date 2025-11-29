@@ -1,0 +1,26 @@
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+public class Q2_FileRead {
+ public static void main(String[] args) {
+ String path = "nonexistentfile.txt";
+ BufferedReader br = null;
+ try {
+ br = new BufferedReader(new FileReader(path));
+ String line;
+ while ((line = br.readLine()) != null) {
+ System.out.println(line);
+ }
+ } catch (FileNotFoundException e) {
+ System.out.println("File not found: " + path);
+ // e.printStackTrace();
+ } catch (IOException e) {
+ System.out.println("I/O error while reading file: " + e.getMessage());
+ } finally {
+ try {
+ if (br != null) br.close();
+ } catch (IOException ignored) {}
+ }
+ }
+}

@@ -1,0 +1,23 @@
+public class Q6_Pair<K, V> {
+ private K key;
+ private V value;
+ public Q6_Pair(K key, V value) {
+ this.key = key;
+ this.value = value;
+ }
+ public K getKey() { return key; }
+ public V getValue() { return value; }
+ public void setKey(K key) { this.key = key; }
+ public void setValue(V value) { this.value = value; }
+ @Override
+ public String toString() {
+ return "Pair[" + key + ", " + value + "]";
+ }
+ // Example usage
+ public static void main(String[] args) {
+ Q6_Pair<String, Integer> p1 = new Q6_Pair<>("Age", 25);
+ Q6_Pair<String, String> p2 = new Q6_Pair<>("Country", "Japan");
+ System.out.println(p1);
+ System.out.println(p2);
+ }
+}

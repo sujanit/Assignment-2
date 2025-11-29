@@ -1,0 +1,32 @@
+class TicketCounter {
+ private int tickets;
+ public TicketCounter(int initial) {
+ this.tickets = initial;
+ }
+ public synchronized boolean bookTicket(String customerName) {
+ if (tickets > 0) {
+ System.out.println(customerName + " is booking a ticket...");
+ // simulate processing time
+ try { Thread.sleep(100); } catch (InterruptedException ignored) {}
+ tickets--;
+ System.out.println(customerName + " successfully booked. Remaining: " + tickets);
+ return true;
+ } else {
+ System.out.println(customerName + " failed to book: no tickets left.");
+ return false;
+ }
+ }
+}
+public class Q4_SyncBooking {
+ public static void main(String[] args) {
+ TicketCounter counter = new TicketCounter(1); // only 1 ticket left
+ Thread t1 = new Thread(() -> counter.bookTicket("Alice"));
+ Thread t2 = new Thread(() -> counter.bookTicket("Bob"));
+ t1.start();
+ t2.start();
+ try {
+ t1.join();
+ t2.join();
+ } catch (InterruptedException ignored) {}
+ }
+}
